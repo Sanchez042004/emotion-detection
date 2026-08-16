@@ -1,8 +1,4 @@
-"""
-Este módulo implementa una aplicación web basada en Flask para
-detectar emociones en un texto, utilizando la función emotion_detector
-del paquete EmotionDetection.
-"""
+
 
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
@@ -12,12 +8,6 @@ app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def emot_detector():
-    """
-    Endpoint que recibe el texto a analizar a través del parámetro
-    'textToAnalyze', invoca la función de detección de emociones y
-    devuelve una respuesta formateada. Si el texto es inválido o está
-    en blanco, devuelve un mensaje de error.
-    """
     text_to_analyze = request.args.get('textToAnalyze')
     response = emotion_detector(text_to_analyze)
 

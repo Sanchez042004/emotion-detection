@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detector de Emociones</title>
+</head>
+<body>
+    <h1>Aplicación de Detección de Emociones</h1>
+
+    <label for="textToAnalyze">Escribe un texto para analizar:</label><br><br>
+    <textarea id="textToAnalyze" rows="4" cols="50"
+        placeholder="Escribe aquí tu frase..."></textarea><br><br>
+
+    <button id="RunSentiment" onclick="RunSentimentAnalysis()">Analizar</button>
+
+    <p id="system_response" style="margin-top: 20px; font-weight: bold;"></p>
+
+    <script>
+        function RunSentimentAnalysis() {
+            const textToAnalyze = document.getElementById("textToAnalyze").value;
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4) {
+                    document.getElementById("system_response").innerText =
+                        this.status === 200 ? this.responseText : "Invalid text! Please try again!";
+                }
+            };
+            xhttp.open(
+                "GET",
+                "/emotionDetector?textToAnalyze=" + encodeURIComponent(textToAnalyze),
+                true
+            );
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>
