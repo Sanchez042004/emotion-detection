@@ -14,8 +14,15 @@ def emotion_detector(text_to_analyze):
     puntuaciones de las emociones (anger, disgust, fear, joy, sadness)
     y la emoción dominante.
 
+    Nota: la función devuelve la respuesta ya parseada y formateada
+    como un diccionario de Python (no el texto crudo de
+    response.text). El texto crudo del servicio Watson NLP se
+    convierte internamente con json.loads(response.text) y luego se
+    reestructura en el diccionario de salida.
+
     Si el texto de entrada no es válido (el servicio responde con
     código de estado 400), todos los valores se devuelven como None.
+    
     """
     url = ('https://sn-watson-emotion.labs.skills.network/v1/'
            'watson.runtime.nlp.v1/NlpService/EmotionPredict')
